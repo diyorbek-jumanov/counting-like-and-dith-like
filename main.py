@@ -31,10 +31,12 @@ def Count(data):
     return n_like, n_dLike
 
 m0 = 0
-
+f = open('data.json', 'a')
 while True:
     m1 = len(getUpdates())
     if m0 != m1:
         n_1, n_2 = Count(getUpdates())
+        f.write(str(n_1) + str(n_2))
         print(n_1, n_2)
         m0 = m1
+f.close()
