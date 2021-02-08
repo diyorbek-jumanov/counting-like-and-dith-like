@@ -4,7 +4,7 @@ from pprint import pprint
 
 # token = os.environ['token']
 token = '1646026624:AAFl-4-09PT5AM5T1RewNdGSo52jnLMLNv4'
-
+# 1258594598
 
 def getUpdates():
     
@@ -13,13 +13,12 @@ def getUpdates():
     updates = res.json()['result']
     
     return updates
+getUpdates()
 
 def Count(data):
     n_like = 0
     n_dLike = 0
     for x in data:
-
-        # msg_id = x['message']['message_id']
         msg_text = x['message'].get('text')
 
         if msg_text != None:
@@ -31,12 +30,12 @@ def Count(data):
     return n_like, n_dLike
 
 m0 = 0
-f = open('data.json', 'a')
 while True:
     m1 = len(getUpdates())
     if m0 != m1:
         n_1, n_2 = Count(getUpdates())
-        f.write(str(n_1) + str(n_2))
+        f = open('data.json', 'w')
+        f.write(f'like = {n_1}\ndislike = {n_2}')
+        f.close()
         print(n_1, n_2)
         m0 = m1
-f.close()
